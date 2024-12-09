@@ -4,11 +4,11 @@ Integrate with Square Payments SDK
 
 | Package Version | Capacitor Version |
 |-----------------|-------------------|
-| 1.X             | 5.X               |
+| 1.X             | 6.X               |
 
 ## Install
 
-Version 1.X is compatible with Capacitor 5.X
+Version 1.X is compatible with Capacitor 6.X
 
 ```bash
 npm install @simPRO-Software/capacitor-square
@@ -125,7 +125,6 @@ initApp(options: { applicationId: string; }) => any
 
 --------------------
 
-
 ### startTransaction(...)
 
 ```typescript
@@ -140,7 +139,6 @@ startTransaction(options: { totalAmount: number; currencyCode: string; allowedPa
 
 --------------------
 
-
 ### handleIosResponse(...)
 
 ```typescript
@@ -154,7 +152,6 @@ handleIosResponse(options: { url: string; }) => any
 **Returns:** <code>any</code>
 
 --------------------
-
 
 ### addListener(...)
 
@@ -171,7 +168,6 @@ addListener(eventName: 'transactionComplete', listenerFunc: TransactionCompleted
 
 --------------------
 
-
 ### addListener(...)
 
 ```typescript
@@ -187,9 +183,7 @@ addListener(eventName: 'transactionFailed', listenerFunc: TransactionFailedListe
 
 --------------------
 
-
 ### Interfaces
-
 
 #### PluginListenerHandle
 
@@ -197,9 +191,7 @@ addListener(eventName: 'transactionFailed', listenerFunc: TransactionFailedListe
 | ------------ | ------------------------- |
 | **`remove`** | <code>() =&gt; any</code> |
 
-
 ### Enums
-
 
 #### AutoReturn
 
