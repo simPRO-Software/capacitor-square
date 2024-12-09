@@ -12,7 +12,7 @@ public class CapacitorSquarePlugin: CAPPlugin {
 
     @objc func initApp(_ call: CAPPluginCall) {
         if let applicationId = call.getString("applicationId") {
-        
+
         implementation.setApplicationID(applicationId);
         call.resolve([
           "message": "set applicationId"
@@ -47,7 +47,7 @@ public class CapacitorSquarePlugin: CAPPlugin {
         //add optional location id
         let locationId = call.getString("locationId") ?? nil;
 
-        // handle a note 
+        // handle a note
         let note = call.getString("note") ?? "";
         if(note.count >= 500) {
             call.reject("Note is too long");
@@ -65,7 +65,7 @@ public class CapacitorSquarePlugin: CAPPlugin {
             call.reject("unable to create amount, maybe invalid currenyCode");
             return;
         }
-        
+
         var supportedTenderTypes: SCCAPIRequestTenderTypes = SCCAPIRequestTenderTypes.init();
         if let allowedPaymentMethods = call.getArray("allowedPaymentMethods", String.self) {
             for paymentMethod in allowedPaymentMethods {
@@ -118,7 +118,7 @@ public class CapacitorSquarePlugin: CAPPlugin {
 
         call.resolve();
     }
-    
+
     @objc func handleIosResponse(_ call: CAPPluginCall) {
          if let url = call.getString("url") {
             let decodeError: Error? = nil;
@@ -131,8 +131,8 @@ public class CapacitorSquarePlugin: CAPPlugin {
                        // Print checkout object
                        self.notifyListeners("transactionComplete", data: [
                            "message": "Transaction successful: \(response)",
-                           "clientTransactionId": response.clientTransactionID ?? "missing id",
-                           "serverTransactionId": response.transactionID ?? "missing id"
+                           "clientTransactionId": response.clientTransactionID ?? nil,
+                           "serverTransactionId": response.transactionID ?? nil
                        ]);
                      } else if decodeError != nil {
                          // Print decode error
