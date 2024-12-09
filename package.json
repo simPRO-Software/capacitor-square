@@ -1,6 +1,6 @@
 {
   "name": "@simPRO-Software/capacitor-square",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Integrate with Square Payments SDK for capacitor",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
