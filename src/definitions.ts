@@ -1,6 +1,6 @@
-import { PluginListenerHandle } from "@capacitor/core";
+import type { PluginListenerHandle } from "@capacitor/core";
 
-export type TransactionCompletedListener = (callback: { 
+export type TransactionCompletedListener = (callback: {
   clientTransactionId: string,
   serverTransactionId: string
 }) => void;
@@ -56,10 +56,10 @@ export interface CapacitorSquarePlugin {
   addListener(
     eventName: 'transactionComplete',
     listenerFunc: TransactionCompletedListener,
-  ): Promise<PluginListenerHandle> & PluginListenerHandle;
+  ): Promise<PluginListenerHandle>;
 
   addListener(
     eventName: 'transactionFailed',
     listenerFunc: TransactionFailedListener,
-  ): Promise<PluginListenerHandle> & PluginListenerHandle;
+  ): Promise<PluginListenerHandle>;
 }

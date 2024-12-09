@@ -1,4 +1,4 @@
-# @dolaned/capacitor-square
+# @simPRO-Software/capacitor-square
 
 Integrate with Square Payments SDK
 
@@ -9,8 +9,9 @@ Integrate with Square Payments SDK
 ## Install
 
 Version 1.X is compatible with Capacitor 5.X
+
 ```bash
-npm install @dolaned/capacitor-square
+npm install @simPRO-Software/capacitor-square
 npx cap sync
 ```
 
@@ -21,13 +22,13 @@ App Initalisation - app.component.ts (Angular example)
 ```ts
 import { App } from "@capacitor/app";
 import { Platform } from "@ionic/angular";
-import { CapacitorSquare } from "@dolaned/capacitor-square";
+import { CapacitorSquare } from "@simPRO-Software/capacitor-square";
 
 export class AppComponent {
   constructor(private platform: Platform) {
     this.initializeApp();
   }
-  
+
   private void initializeApp() {
     this.platform.ready().then(() => {
       App.addListener("appUrlOpen", (data: URLOpenListenerEvent) => {
@@ -49,8 +50,9 @@ export class AppComponent {
 ```
 
 Payment flow
+
 ```ts
-import { CapacitorSquare } from "@dolaned/capacitor-square";
+import { CapacitorSquare } from "@simPRO-Software/capacitor-square";
 
 //
 // Initalise the square plugin
@@ -91,7 +93,6 @@ CapacitorSquare.startTransaction({
 > Note: autoReturnTimeout is only available on Android
 
 Follow these setup steps from square to enable call back to your app: [Square Documentation](https://developer.squareup.com/docs/pos-api/build-on-ios#step-4-add-your-url-schemes).
-
 
 ## API
 
@@ -158,7 +159,7 @@ handleIosResponse(options: { url: string; }) => any
 ### addListener(...)
 
 ```typescript
-addListener(eventName: 'transactionComplete', listenerFunc: TransactionCompletedListener) => Promise<PluginListenerHandle> & PluginListenerHandle
+addListener(eventName: 'transactionComplete', listenerFunc: TransactionCompletedListener) => any
 ```
 
 | Param              | Type                                                                                              |
@@ -174,7 +175,7 @@ addListener(eventName: 'transactionComplete', listenerFunc: TransactionCompleted
 ### addListener(...)
 
 ```typescript
-addListener(eventName: 'transactionFailed', listenerFunc: TransactionFailedListener) => Promise<PluginListenerHandle> & PluginListenerHandle
+addListener(eventName: 'transactionFailed', listenerFunc: TransactionFailedListener) => any
 ```
 
 | Param              | Type                                                |
