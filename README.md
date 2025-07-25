@@ -101,9 +101,10 @@ Follow these setup steps from square to enable call back to your app: [Square Do
 * [`initApp(...)`](#initapp)
 * [`startTransaction(...)`](#starttransaction)
 * [`handleIosResponse(...)`](#handleiosresponse)
-* [`addListener(...)`](#addlistener)
-* [`addListener(...)`](#addlistener)
+* [`addListener('transactionComplete', ...)`](#addlistenertransactioncomplete-)
+* [`addListener('transactionFailed', ...)`](#addlistenertransactionfailed-)
 * [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
 * [Enums](#enums)
 
 </docgen-index>
@@ -114,84 +115,101 @@ Follow these setup steps from square to enable call back to your app: [Square Do
 ### initApp(...)
 
 ```typescript
-initApp(options: { applicationId: string; }) => any
+initApp(options: { applicationId: string; }) => Promise<{ message: string; }>
 ```
 
 | Param         | Type                                    |
 | ------------- | --------------------------------------- |
 | **`options`** | <code>{ applicationId: string; }</code> |
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;{ message: string; }&gt;</code>
 
 --------------------
+
 
 ### startTransaction(...)
 
 ```typescript
-startTransaction(options: { totalAmount: number; currencyCode: string; allowedPaymentMethods?: string[] | null; autoReturnTimeout?: number | AutoReturn.NoTimeout | null; callbackUrl?: string | null; }) => any
+startTransaction(options: { totalAmount: number; currencyCode: string; allowedPaymentMethods?: string[] | null; autoReturnTimeout?: number | AutoReturn.NoTimeout | null; callbackUrl?: string | null; }) => Promise<void>
 ```
 
-| Param         | Type                                                                                                                                                              |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`options`** | <code>{ totalAmount: number; currencyCode: string; allowedPaymentMethods?: {} \| null; autoReturnTimeout?: number \| null; callbackUrl?: string \| null; }</code> |
-
-**Returns:** <code>any</code>
+| Param         | Type                                                                                                                                                                    |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`options`** | <code>{ totalAmount: number; currencyCode: string; allowedPaymentMethods?: string[] \| null; autoReturnTimeout?: number \| null; callbackUrl?: string \| null; }</code> |
 
 --------------------
+
 
 ### handleIosResponse(...)
 
 ```typescript
-handleIosResponse(options: { url: string; }) => any
+handleIosResponse(options: { url: string; }) => Promise<void>
 ```
 
 | Param         | Type                          |
 | ------------- | ----------------------------- |
 | **`options`** | <code>{ url: string; }</code> |
 
-**Returns:** <code>any</code>
-
 --------------------
 
-### addListener(...)
+
+### addListener('transactionComplete', ...)
 
 ```typescript
-addListener(eventName: 'transactionComplete', listenerFunc: TransactionCompletedListener) => any
+addListener(eventName: 'transactionComplete', listenerFunc: TransactionCompletedListener) => Promise<PluginListenerHandle>
 ```
 
-| Param              | Type                                                                                              |
-| ------------------ | ------------------------------------------------------------------------------------------------- |
-| **`eventName`**    | <code>"transactionComplete"</code>                                                                |
-| **`listenerFunc`** | <code>(callback: { clientTransactionId: string; serverTransactionId: string; }) =&gt; void</code> |
+| Param              | Type                                                                                  |
+| ------------------ | ------------------------------------------------------------------------------------- |
+| **`eventName`**    | <code>'transactionComplete'</code>                                                    |
+| **`listenerFunc`** | <code><a href="#transactioncompletedlistener">TransactionCompletedListener</a></code> |
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
 
 --------------------
 
-### addListener(...)
+
+### addListener('transactionFailed', ...)
 
 ```typescript
-addListener(eventName: 'transactionFailed', listenerFunc: TransactionFailedListener) => any
+addListener(eventName: 'transactionFailed', listenerFunc: TransactionFailedListener) => Promise<PluginListenerHandle>
 ```
 
-| Param              | Type                                                |
-| ------------------ | --------------------------------------------------- |
-| **`eventName`**    | <code>"transactionFailed"</code>                    |
-| **`listenerFunc`** | <code>(callback: { error: any; }) =&gt; void</code> |
+| Param              | Type                                                                            |
+| ------------------ | ------------------------------------------------------------------------------- |
+| **`eventName`**    | <code>'transactionFailed'</code>                                                |
+| **`listenerFunc`** | <code><a href="#transactionfailedlistener">TransactionFailedListener</a></code> |
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
 
 --------------------
+
 
 ### Interfaces
 
+
 #### PluginListenerHandle
 
-| Prop         | Type                      |
-| ------------ | ------------------------- |
-| **`remove`** | <code>() =&gt; any</code> |
+| Prop         | Type                                      |
+| ------------ | ----------------------------------------- |
+| **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
+
+
+### Type Aliases
+
+
+#### TransactionCompletedListener
+
+<code>(callback: { clientTransactionId: string; serverTransactionId: string; }): void</code>
+
+
+#### TransactionFailedListener
+
+<code>(callback: { error: any; }): void</code>
+
 
 ### Enums
+
 
 #### AutoReturn
 
